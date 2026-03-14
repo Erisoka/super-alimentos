@@ -1,0 +1,24 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fondo de la página y centrado del juego */
+body {
+    background-color: #2c3e50; /* Un azul oscuro para que el juego resalte */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden; /* Evita barras de desplazamiento */
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo para el contenedor de Phaser */
+#game-container {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra para dar efecto de relieve */
+    border-radius: 10px; /* Bordes redondeados en el lienzo */
+    overflow: hidden;
+}
