@@ -48,11 +48,14 @@ export default class Level4_Decisiones extends Phaser.Scene {
             strokeThickness: 4
         }).setOrigin(0.5, 0.5).setDepth(10);
 
+        // Título del Nivel
+        this.add.image(400, 100, 'title_n4').setScale(0.35).setDepth(10);
+
         // Personaje nutri (Depth 10)
         this.nutri = this.add.image(730, 480, 'nutri').setScale(0.2).setDepth(10);
         
         // Globo de texto para errores (Depth 30 para estar siempre encima de Chatarra)
-        this.globoNutri = this.add.text(400, 220, '', {
+        this.globoNutri = this.add.text(400, 270, '', {
             fontFamily: 'Arial',
             fontSize: '24px',
             color: '#ffffff',
@@ -64,10 +67,10 @@ export default class Level4_Decisiones extends Phaser.Scene {
         }).setOrigin(0.5).setDepth(30);
         this.globoNutri.setVisible(false);
 
-        // Pizarra y Pregunta (Depth 5 y 10)
-        this.add.image(400, 280, 'pizarra').setScale(0.7).setDepth(5);
+        // Pizarra y Pregunta (Depth 5 y 10) - Bajado 50px
+        this.add.image(400, 330, 'pizarra').setScale(0.7).setDepth(5);
         
-        this.textoPregunta = this.add.text(400, 150, '', {
+        this.textoPregunta = this.add.text(400, 200, '', {
             fontFamily: 'Arial',
             fontSize: '28px',
             color: '#ffffff',
@@ -76,17 +79,17 @@ export default class Level4_Decisiones extends Phaser.Scene {
             strokeThickness: 6
         }).setOrigin(0.5).setDepth(10);
 
-        this.chatarra = this.add.image(400, 300, 'chatarra').setScale(0.4).setDepth(20);
+        this.chatarra = this.add.image(400, 350, 'chatarra').setScale(0.4).setDepth(20);
         this.chatarra.setVisible(false);
 
         // 3. Contenedores Visuales de A y B (Áreas Invisibles)
         
-        // Opción A
-        this.zonaA = this.add.zone(250, 320, 150, 200).setInteractive({ useHandCursor: true });
+        // Opción A - Bajadas 50px
+        this.zonaA = this.add.zone(250, 370, 150, 200).setInteractive({ useHandCursor: true });
             
-        this.imgOpA = this.add.image(250, 300, 'manzana').setScale(0.15).setDepth(7);
+        this.imgOpA = this.add.image(250, 350, 'manzana').setScale(0.15).setDepth(7);
         
-        this.textOptionA = this.add.text(250, 380, 'A', {
+        this.textOptionA = this.add.text(250, 430, 'A', {
             fontFamily: 'Arial',
             fontSize: '24px',
             color: '#ffffff',
@@ -96,12 +99,12 @@ export default class Level4_Decisiones extends Phaser.Scene {
             align: 'center'
         }).setOrigin(0.5).setDepth(7);
 
-        // Opción B
-        this.zonaB = this.add.zone(550, 320, 150, 200).setInteractive({ useHandCursor: true });
+        // Opción B - Bajadas 50px
+        this.zonaB = this.add.zone(550, 370, 150, 200).setInteractive({ useHandCursor: true });
             
-        this.imgOpB = this.add.image(550, 300, 'dulces').setScale(0.15).setDepth(7);
+        this.imgOpB = this.add.image(550, 350, 'dulces').setScale(0.15).setDepth(7);
         
-        this.textOptionB = this.add.text(550, 380, 'B', {
+        this.textOptionB = this.add.text(550, 430, 'B', {
             fontFamily: 'Arial',
             fontSize: '24px',
             color: '#ffffff',
@@ -178,8 +181,8 @@ export default class Level4_Decisiones extends Phaser.Scene {
                 duration: 50
             });
             
-            // Imagen chatarra en X: 400, Y: 380, Escala 0.5, Depth 15
-            const chatarraImg = this.add.image(400, 380, 'chatarra').setScale(0.5).setDepth(15);
+            // Imagen chatarra en X: 400, Y: 430 (bajado 50px), Escala 0.5, Depth 15
+            const chatarraImg = this.add.image(400, 430, 'chatarra').setScale(0.5).setDepth(15);
             this.tweens.add({
                 targets: chatarraImg,
                 alpha: 0,

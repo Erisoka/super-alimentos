@@ -12,30 +12,25 @@ export default class VideosScene extends Phaser.Scene {
             .setInteractive({ useHandCursor: true })
             .setScale(0.1)
             .setDepth(10);
-        
         btnBack.on('pointerdown', () => {
+            this.sound.play('click');
             this.scene.start('MainMenu');
         });
 
-        // Título Principal
-        this.add.text(400, 100, '¡Aprende más con estos videos!', {
-            fontFamily: 'Arial',
-            fontSize: '36px',
-            color: '#ffffff',
-            stroke: '#000000',
-            strokeThickness: 6,
-            align: 'center'
-        }).setOrigin(0.5).setDepth(10);
+        // Título Principal Gráfico
+        this.add.image(400, 120, 'title_videos')
+            .setScale(0.30)
+            .setDepth(10);
 
         // Videos y Miniaturas
         
         // --- Video 1 ---
-        const thumb1 = this.add.image(150, 300, 'thumb1')
+        const thumb1 = this.add.image(150, 380, 'thumb1')
             .setInteractive({ useHandCursor: true })
             .setDisplaySize(220, 130)
             .setDepth(5);
             
-        this.add.text(150, 400, 'El Semáforo de\nlos alimentos', {
+        this.add.text(150, 480, 'El Semáforo de\nlos alimentos', {
             fontFamily: 'Arial',
             fontSize: '18px',
             color: '#ffffff',
@@ -45,16 +40,17 @@ export default class VideosScene extends Phaser.Scene {
         }).setOrigin(0.5).setDepth(10);
 
         thumb1.on('pointerdown', () => {
+            this.sound.play('click');
             window.open('https://youtube.com/shorts/q0izUl7caKw', '_blank');
         });
 
         // --- Video 2 ---
-        const thumb2 = this.add.image(400, 300, 'thumb2')
+        const thumb2 = this.add.image(400, 380, 'thumb2')
             .setInteractive({ useHandCursor: true })
             .setDisplaySize(220, 130)
             .setDepth(5);
             
-        this.add.text(400, 400, '¿Qué es la\ncomida chatarra?', {
+        this.add.text(400, 480, '¿Qué es la\ncomida chatarra?', {
             fontFamily: 'Arial',
             fontSize: '18px',
             color: '#ffffff',
@@ -64,16 +60,17 @@ export default class VideosScene extends Phaser.Scene {
         }).setOrigin(0.5).setDepth(10);
 
         thumb2.on('pointerdown', () => {
+            this.sound.play('click');
             window.open('https://www.youtube.com/watch?v=apCEJ1ySD5M', '_blank');
         });
 
         // --- Video 3 ---
-        const thumb3 = this.add.image(650, 300, 'thumb3')
+        const thumb3 = this.add.image(650, 380, 'thumb3')
             .setInteractive({ useHandCursor: true })
             .setDisplaySize(220, 130)
             .setDepth(5);
             
-        this.add.text(650, 400, 'Cuento: Rico y la\ncomida chatarra', {
+        this.add.text(650, 480, 'Cuento: Rico y la\ncomida chatarra', {
             fontFamily: 'Arial',
             fontSize: '18px',
             color: '#ffffff',
@@ -83,6 +80,7 @@ export default class VideosScene extends Phaser.Scene {
         }).setOrigin(0.5).setDepth(10);
 
         thumb3.on('pointerdown', () => {
+            this.sound.play('click');
             window.open('https://www.youtube.com/watch?v=t_VVWwb3Vys', '_blank');
         });
         
