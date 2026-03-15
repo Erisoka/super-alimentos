@@ -45,6 +45,12 @@ export default class PreloaderScene extends Phaser.Scene {
         this.load.image('chatarra', 'assets/images/chatarra.png');
         this.load.image('dona', 'assets/images/dona.png');
         this.load.image('hamburguesa', 'assets/images/hamburguesa.png');
+        
+        // Videos
+        this.load.image('btn_video', 'assets/images/btn_video.png');
+        this.load.image('thumb1', 'assets/images/thumb1.jpg'); 
+        this.load.image('thumb2', 'assets/images/thumb2.jpg');
+        this.load.image('thumb3', 'assets/images/thumb3.jpg');
     }
 
     create() {

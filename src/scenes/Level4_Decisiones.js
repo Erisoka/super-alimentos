@@ -226,14 +226,34 @@ export default class Level4_Decisiones extends Phaser.Scene {
         });
 
         // Mensaje final largo
-        this.add.text(400, 200, '¡Felicitaciones!\nAhora sabes cómo elegir alimentos saludables.\nRecuerda comer frutas y verduras, beber agua\ny evitar demasiados dulces.\n¡Tu cuerpo te lo agradecerá!', {
+        this.add.text(400, 150, '¡Felicitaciones!\nAhora sabes cómo elegir alimentos saludables.\nRecuerda comer frutas y verduras, beber agua\ny evitar demasiados dulces.\n¡Tu cuerpo te lo agradecerá!', {
             fontFamily: 'Arial',
-            fontSize: '32px',
+            fontSize: '28px',
             color: '#ffffff',
             stroke: '#00AA00', // Borde verde grueso
             strokeThickness: 8,
             align: 'center',
-            lineSpacing: 10
+            lineSpacing: 8
         }).setOrigin(0.5).setDepth(32);
+
+        // Botón a la Escena de Videos
+        const btnVideo = this.add.image(400, 520, 'btn_video')
+            .setInteractive({ useHandCursor: true })
+            .setScale(0.8) 
+            .setDepth(30);
+            
+        // Efecto pulso para el botón
+        this.tweens.add({
+            targets: btnVideo,
+            scale: 0.85,
+            duration: 600,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.easeInOut'
+        });
+
+        btnVideo.on('pointerdown', () => {
+            this.scene.start('VideosScene');
+        });
     }
 }
