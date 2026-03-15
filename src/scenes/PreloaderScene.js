@@ -24,6 +24,13 @@ export default class PreloaderScene extends Phaser.Scene {
         this.load.image('huevo', 'assets/images/huevo.png');
         this.load.image('pizza', 'assets/images/pizza.png');
         this.load.image('dulces', 'assets/images/dulces.png');
+
+        // Nivel 2 - Lonchera
+        this.load.image('lonchera', 'assets/images/lonchera.png');
+        this.load.image('yogur', 'assets/images/yogur.png');
+        this.load.image('pan', 'assets/images/pan.png');
+        this.load.image('gaseosa', 'assets/images/gaseosa.png');
+        this.load.image('papas', 'assets/images/papas.png');
     }
 
     create() {
