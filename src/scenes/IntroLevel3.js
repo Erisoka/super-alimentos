@@ -22,17 +22,19 @@ export default class IntroLevel3 extends Phaser.Scene {
             fontFamily: 'Arial',
             fontSize: '22px',
             color: '#111111',
-            wordWrap: { width: 450 },
+            wordWrap: { width: 420 },
             lineSpacing: 10
         });
 
-        // 3. Imágenes Ilustrativas (Derecha)
-        // Al colocar los alimentos antes que la canasta, aparecerán "dentro" si se posicionan detrás
-        this.add.image(620, 260, 'banano').setScale(0.12).setAngle(-15);
-        this.add.image(680, 260, 'brocoli').setScale(0.12).setAngle(15);
-        this.add.image(650, 300, 'canasta').setScale(0.4);
+        // 3. Imágenes Ilustrativas (Derecha) - Refactorizado para evitar solapamiento
         
-        this.add.image(500, 400, 'nutri').setScale(0.2);
+        // Primero la Canasta (Fondo de los personajes)
+        this.add.image(620, 320, 'canasta_llena').setScale(0.32);
+
+        // Luego la Pandilla (En frente de la canasta)
+        this.add.image(470, 420, 'nutri').setScale(0.22).setAngle(-5); 
+        this.add.image(550, 470, 'verdurin').setScale(0.18);
+        this.add.image(700, 470, 'aguita').setScale(0.16);
 
         // 4. Botón para Iniciar el Nivel
         const btnStart = this.add.text(650, 520, '[ ¡Comenzar! ]', {

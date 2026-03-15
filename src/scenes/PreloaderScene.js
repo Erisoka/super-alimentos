@@ -38,6 +38,7 @@ export default class PreloaderScene extends Phaser.Scene {
         // Nivel 3 - Grupos
         this.load.image('title_n3', 'assets/images/title_n3.png');
         this.load.image('canasta', 'assets/images/canasta.png');
+        this.load.image('canasta_llena', 'assets/images/canasta_llena.png');
         this.load.image('brocoli', 'assets/images/brocoli.png');
         this.load.image('carne', 'assets/images/carne.png');
         this.load.image('arroz', 'assets/images/arroz.png');
