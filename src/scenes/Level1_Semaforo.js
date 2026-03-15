@@ -132,6 +132,19 @@ export default class Level1_Semaforo extends Phaser.Scene {
         // Panel semitransparente oscuro
         this.add.rectangle(400, 300, 800, 600, 0x000000, 0.7).setDepth(30);
 
+        // Efecto de Confeti (Partículas)
+        const confeti = this.add.particles(400, 100, 'star', {
+            speed: { min: 100, max: 400 },
+            angle: { min: 0, max: 360 },
+            scale: { start: 0.15, end: 0 },
+            lifespan: 2500,
+            gravityY: 300,
+            quantity: 3,
+            tint: [ 0xff0000, 0x00ff00, 0x0000ff, 0xffff00, 0xff00ff ],
+            emitting: true
+        });
+        confeti.setDepth(30);
+
         // Texto alegre
         this.add.text(400, 200, '¡Excelente!\nAyudaste a Nutri', {
             fontFamily: 'Arial',

@@ -125,22 +125,44 @@ export default class Level2_Lonchera extends Phaser.Scene {
         // Panel oscuro semitransparente (Depth 19 para tapar fondo, pero dejar la lonchera en 20 visible y resaltada)
         this.add.rectangle(400, 300, 800, 600, 0x000000, 0.7).setDepth(19);
 
-        // Mostrar lonchera llena con destello (Depth 20)
+        // Mostrar lonchera llena (Depth 20)
         const loncheraLlena = this.add.image(400, 260, 'lonchera_llena').setScale(0.6).setDepth(20);
         loncheraLlena.setAlpha(0); // Empezar invisible para el efecto
         
-        // Destello (Fade In + un poco de crecimiento)
+        // Animación de aparición (Fade In)
         this.tweens.add({
             targets: loncheraLlena,
             alpha: 1,
-            scale: 0.65,
-            yoyo: true,
-            repeat: 1,
-            duration: 300,
+            duration: 400,
             onComplete: () => {
-                loncheraLlena.setScale(0.6); // Volver al tamaño normal
+                // Animación de celebración (latidos)
+                this.tweens.add({
+                    targets: loncheraLlena,
+                    scale: 0.65,
+                    yoyo: true,
+                    repeat: 3, // Repite 3 veces el latido
+                    duration: 250,
+                    onComplete: () => {
+                        // Queda fija en la pantalla al 100% de opacidad y escala normal
+                        loncheraLlena.setScale(0.6);
+                        loncheraLlena.setAlpha(1);
+                    }
+                });
             }
         });
+
+        // Efecto de Confeti (Partículas)
+        const confeti = this.add.particles(400, 100, 'star', {
+            speed: { min: 100, max: 400 },
+            angle: { min: 0, max: 360 },
+            scale: { start: 0.15, end: 0 },
+            lifespan: 2500,
+            gravityY: 300,
+            quantity: 3,
+            tint: [ 0xff0000, 0x00ff00, 0x0000ff, 0xffff00, 0xff00ff ],
+            emitting: true
+        });
+        confeti.setDepth(30);
 
         const mensajeVictoria = this.add.text(400, 120, '¡Excelente!\nHas preparado una lonchera\nque te dará mucha energía.', {
             fontFamily: 'Arial',
