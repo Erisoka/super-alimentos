@@ -37,11 +37,14 @@ export default class Level3_Grupos extends Phaser.Scene {
             strokeThickness: 4
         }).setOrigin(0.5, 0.5).setDepth(10);
 
+        // Título del Nivel
+        this.add.image(400, 100, 'title_n3').setScale(0.35).setDepth(10);
+
         // Personaje nutri (Depth 10)
         this.add.image(730, 480, 'nutri').setScale(0.2).setDepth(10);
         
         // Globo de texto (Depth 10)
-        this.add.text(580, 380, '¡Clasifica cada alimento\nen su grupo correcto!', {
+        this.add.text(580, 410, '¡Clasifica cada alimento\nen su grupo correcto!', {
             fontFamily: 'Arial',
             fontSize: '18px',
             color: '#000000',
@@ -50,7 +53,7 @@ export default class Level3_Grupos extends Phaser.Scene {
             padding: { x: 10, y: 10 }
         }).setOrigin(0.5).setDepth(10);
 
-        // Las 4 Canastas y Drop Zones (Y: 250) (Depth 5)
+        // Las 4 Canastas y Drop Zones (Y bajado a 300 para dar espacio al título)
         const gruposData = [
             { id: 'Frutas', x: 160 },
             { id: 'Verduras', x: 320 },
@@ -59,9 +62,10 @@ export default class Level3_Grupos extends Phaser.Scene {
         ];
 
         gruposData.forEach(grupo => {
-            this.add.image(grupo.x, 250, 'canasta').setScale(0.4).setDepth(5);
+            this.add.image(grupo.x, 300, 'canasta').setScale(0.4).setDepth(5);
             
-            this.add.text(grupo.x, 150, grupo.id, {
+            // Bajamos también el texto para que no tape el título
+            this.add.text(grupo.x, 200, grupo.id, {
                 fontFamily: 'Arial',
                 fontSize: '24px',
                 color: '#ffffff',
@@ -71,7 +75,8 @@ export default class Level3_Grupos extends Phaser.Scene {
 
             const zoneWidth = 120;
             const zoneHeight = 120;
-            const dropZone = this.add.zone(grupo.x, 250, zoneWidth, zoneHeight).setRectangleDropZone(zoneWidth, zoneHeight);
+            // Se sincroniza la Y del dropzone con la canasta
+            const dropZone = this.add.zone(grupo.x, 300, zoneWidth, zoneHeight).setRectangleDropZone(zoneWidth, zoneHeight);
             dropZone.grupoCorrecto = grupo.id;
         });
 
