@@ -53,6 +53,9 @@ export default class Level3_Grupos extends Phaser.Scene {
             padding: { x: 10, y: 10 }
         }).setOrigin(0.5).setDepth(10);
 
+        // Don Chatarra (Oculto al inicio)
+        this.chatarra = this.add.image(400, 300, 'chatarra').setScale(0.4).setDepth(50).setVisible(false);
+
         // Las 4 Canastas y Drop Zones (Y bajado a 300 para dar espacio al título)
         const gruposData = [
             { id: 'Frutas', x: 160 },
@@ -128,6 +131,12 @@ export default class Level3_Grupos extends Phaser.Scene {
             } else {
                 this.sound.play('error');
                 gameObject.input.dropZone = false; 
+
+                // Feedback visual de Don Chatarra
+                this.chatarra.setVisible(true);
+                this.time.delayedCall(1500, () => {
+                    this.chatarra.setVisible(false);
+                });
             }
         });
 

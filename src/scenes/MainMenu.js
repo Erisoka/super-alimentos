@@ -39,5 +39,34 @@ export default class MainMenu extends Phaser.Scene {
         btnPlay.on('pointerout', () => {
             btnPlay.setScale(1);
         });
+
+        // Botón gráfico de créditos
+        const btnCreditos = this.add.image(750, 60, 'btn_creditos')
+            .setDepth(20)
+            .setScale(0.35)
+            .setInteractive({ useHandCursor: true });
+
+        btnCreditos.on('pointerdown', () => {
+            this.sound.play('click');
+            this.scene.start('CreditsScene');
+        });
+
+        btnCreditos.on('pointerover', () => {
+            this.tweens.add({
+                targets: btnCreditos,
+                scale: 0.42,
+                duration: 200,
+                ease: 'Power2'
+            });
+        });
+
+        btnCreditos.on('pointerout', () => {
+            this.tweens.add({
+                targets: btnCreditos,
+                scale: 0.35,
+                duration: 200,
+                ease: 'Power2'
+            });
+        });
     }
 }

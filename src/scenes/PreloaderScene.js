@@ -57,9 +57,14 @@ export default class PreloaderScene extends Phaser.Scene {
         this.load.image('thumb1', 'assets/images/thumb1.jpg'); 
         this.load.image('thumb2', 'assets/images/thumb2.jpg');
         this.load.image('thumb3', 'assets/images/thumb3.jpg');
+        this.load.image('btn_creditos', 'assets/images/btn_creditos.png');
 
         // Introducción
         this.load.image('intro_historia', 'assets/images/intro_historia.png');
+
+        // Fotos Créditos
+        this.load.image('foto_doralba', 'assets/images/foto_doralba.png');
+        this.load.image('foto_vanessa', 'assets/images/foto_vanessa.png');
         
         // Audios
         this.load.audio('bgm', 'assets/audio/bgm_menu.mp3');

@@ -62,6 +62,9 @@ export default class Level2_Lonchera extends Phaser.Scene {
         // Personaje Nutri (Depth 10)
         this.add.image(730, 480, 'nutri').setScale(0.2).setDepth(10);
 
+        // Don Chatarra (Oculto al inicio)
+        this.chatarra = this.add.image(400, 300, 'chatarra').setScale(0.4).setDepth(50).setVisible(false);
+
         // Configuramos los alimentos y si son saludables (true/false)
         // Ajuste de espaciado para evitar superposición (rango 120-680, espacio ~93px)
         const alimentosData = [
@@ -112,6 +115,12 @@ export default class Level2_Lonchera extends Phaser.Scene {
                     // Alimento NO saludable
                     this.textoInstrucciones.setText('¡Cuidado! Ese alimento tiene\nmucha azúcar o grasa.');
                     
+                    // Feedback visual de Don Chatarra
+                    this.chatarra.setVisible(true);
+                    this.time.delayedCall(1500, () => {
+                        this.chatarra.setVisible(false);
+                    });
+
                     // Efecto de temblor (shake)
                     this.tweens.add({
                         targets: alimento,

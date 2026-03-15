@@ -83,6 +83,9 @@ export default class Level1_Semaforo extends Phaser.Scene {
         // Personaje Nutri guardado en this para poder animarlo luego (Depth 10)
         this.nutri = this.add.image(730, 480, 'nutri').setScale(0.2).setDepth(10);
 
+        // Don Chatarra (Oculto al inicio)
+        this.chatarra = this.add.image(400, 300, 'chatarra').setScale(0.4).setDepth(50).setVisible(false);
+
         // Texto sobre el personaje
         this.add.text(640, 320, '¡Hola! Arrastra los\nalimentos al color correcto.', {
             fontFamily: 'Arial',
@@ -117,6 +120,12 @@ export default class Level1_Semaforo extends Phaser.Scene {
             } else {
                 this.sound.play('error');
                 gameObject.input.dropZone = false; 
+
+                // Feedback visual de Don Chatarra
+                this.chatarra.setVisible(true);
+                this.time.delayedCall(1500, () => {
+                    this.chatarra.setVisible(false);
+                });
             }
         });
 
