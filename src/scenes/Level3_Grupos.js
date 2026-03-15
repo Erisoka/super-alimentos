@@ -3,18 +3,15 @@ export default class Level3_Grupos extends Phaser.Scene {
         super('Level3_Grupos');
     }
 
+    init() {
+        this.score = 0;
+    }
+
     create() {
+        // Fondo (Depth 0)
         this.add.image(400, 300, 'bg_menu').setAlpha(0.6).setDisplaySize(800, 600).setDepth(0);
 
-        this.add.text(400, 300, 'Nivel 3: Grupos Alimenticios\n(En construcción)', { 
-            fontFamily: 'Arial',
-            fontSize: '32px', 
-            color: '#fff', 
-            align: 'center',
-            stroke: '#000000',
-            strokeThickness: 4
-        }).setOrigin(0.5);
-
+        // HUD Superior (Depth 10)
         const btnBack = this.add.image(40, 40, 'btn_back')
             .setInteractive({ useHandCursor: true })
             .setScale(0.1)
@@ -22,6 +19,166 @@ export default class Level3_Grupos extends Phaser.Scene {
         
         btnBack.on('pointerdown', () => {
             this.scene.start('Level2_Lonchera');
+        });
+
+        const btnPause = this.add.image(110, 40, 'btn_pause')
+            .setInteractive({ useHandCursor: true })
+            .setScale(0.1)
+            .setDepth(10);
+
+        this.add.image(700, 40, 'star').setScale(0.15).setDepth(10);
+
+        this.scoreText = this.add.text(740, 40, '0', {
+            fontFamily: 'Arial',
+            fontSize: '32px',
+            color: '#fff',
+            stroke: '#000000',
+            strokeThickness: 4
+        }).setOrigin(0.5, 0.5).setDepth(10);
+
+        // Personaje nutri (Depth 10)
+        this.add.image(730, 480, 'nutri').setScale(0.2).setDepth(10);
+        
+        // Globo de texto (Depth 10)
+        this.add.text(580, 380, '¡Clasifica cada alimento\nen su grupo correcto!', {
+            fontFamily: 'Arial',
+            fontSize: '18px',
+            color: '#000000',
+            backgroundColor: '#ffffff',
+            align: 'center',
+            padding: { x: 10, y: 10 }
+        }).setOrigin(0.5).setDepth(10);
+
+        // Las 4 Canastas y Drop Zones (Y: 250) (Depth 5)
+        const gruposData = [
+            { id: 'Frutas', x: 160 },
+            { id: 'Verduras', x: 320 },
+            { id: 'Proteínas', x: 480 },
+            { id: 'Cereales', x: 640 }
+        ];
+
+        gruposData.forEach(grupo => {
+            this.add.image(grupo.x, 250, 'canasta').setScale(0.4).setDepth(5);
+            
+            this.add.text(grupo.x, 150, grupo.id, {
+                fontFamily: 'Arial',
+                fontSize: '24px',
+                color: '#ffffff',
+                stroke: '#000000',
+                strokeThickness: 6
+            }).setOrigin(0.5).setDepth(5);
+
+            const zoneWidth = 120;
+            const zoneHeight = 120;
+            const dropZone = this.add.zone(grupo.x, 250, zoneWidth, zoneHeight).setRectangleDropZone(zoneWidth, zoneHeight);
+            dropZone.grupoCorrecto = grupo.id;
+        });
+
+        // Bandeja inferior y Alimentos a Clasificar (Depth 10)
+        this.add.rectangle(400, 530, 600, 120, 0xffffff, 0.5)
+            .setStrokeStyle(4, 0xf5deb3)
+            .setDepth(5);
+
+        // Alimentos
+        const alimentosData = [
+            { id: 'banano', x: 250, grupo: 'Frutas' },
+            { id: 'brocoli', x: 350, grupo: 'Verduras' },
+            { id: 'carne', x: 450, grupo: 'Proteínas' },
+            { id: 'arroz', x: 550, grupo: 'Cereales' }
+        ];
+
+        alimentosData.forEach(item => {
+            const alimento = this.add.image(item.x, 530, item.id)
+                .setScale(0.15)
+                .setDepth(10)
+                .setInteractive({ draggable: true });
+            alimento.grupoCorrecto = item.grupo;
+        });
+
+        // Eventos de Drag & Drop
+        this.input.on('dragstart', (pointer, gameObject) => {
+            gameObject.setDepth(20);
+        });
+
+        this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
+            gameObject.x = dragX;
+            gameObject.y = dragY;
+        });
+
+        this.input.on('drop', (pointer, gameObject, dropZone) => {
+            if (gameObject.grupoCorrecto === dropZone.grupoCorrecto) {
+                this.score += 10;
+                this.scoreText.setText(this.score);
+                gameObject.destroy();
+
+                if (this.score === 40) {
+                    this.finalizarNivel();
+                }
+            } else {
+                gameObject.input.dropZone = false; 
+            }
+        });
+
+        this.input.on('dragend', (pointer, gameObject, dropped) => {
+            if (!dropped || gameObject.input.dropZone === false) {
+                this.tweens.add({
+                    targets: gameObject,
+                    x: gameObject.input.dragStartX,
+                    y: gameObject.input.dragStartY,
+                    duration: 300,
+                    ease: 'Power2'
+                });
+                gameObject.setDepth(10);
+            }
+        });
+    }
+
+    finalizarNivel() {
+        // Panel semitransparente oscuro
+        this.add.rectangle(400, 300, 800, 600, 0x000000, 0.7).setDepth(30);
+
+        // Efecto de Confeti (Partículas)
+        const confeti = this.add.particles(400, 100, 'star', {
+            speed: { min: 100, max: 400 },
+            angle: { min: 0, max: 360 },
+            scale: { start: 0.15, end: 0 },
+            lifespan: 2500,
+            gravityY: 300,
+            quantity: 3,
+            tint: [ 0xff0000, 0x00ff00, 0x0000ff, 0xffff00, 0xff00ff ],
+            emitting: true
+        });
+        confeti.setDepth(30);
+
+        // Texto alegre
+        this.add.text(400, 200, '¡Genial! Cada grupo ayuda a\ntu cuerpo de forma diferente.', {
+            fontFamily: 'Arial',
+            fontSize: '40px',
+            color: '#FFD700',
+            stroke: '#000000',
+            strokeThickness: 8,
+            align: 'center'
+        }).setOrigin(0.5).setDepth(30);
+
+        // Botón interactivo Siguiente Nivel
+        const btnNext = this.add.text(400, 500, '[ Siguiente Nivel ]', {
+            fontFamily: 'Arial',
+            fontSize: '32px',
+            color: '#ffffff',
+            backgroundColor: '#008800', // Fondo estilo botón
+            padding: { x: 20, y: 10 }
+        }).setOrigin(0.5).setDepth(30).setInteractive({ useHandCursor: true });
+
+        btnNext.on('pointerdown', () => {
+            this.scene.start('Level4_Decisiones');
+        });
+        
+        btnNext.on('pointerover', () => {
+            btnNext.setScale(1.1);
+        });
+
+        btnNext.on('pointerout', () => {
+            btnNext.setScale(1);
         });
     }
 }

@@ -4,6 +4,7 @@ import MainMenu from './scenes/MainMenu.js';
 import Level1_Semaforo from './scenes/Level1_Semaforo.js';
 import Level2_Lonchera from './scenes/Level2_Lonchera.js';
 import Level3_Grupos from './scenes/Level3_Grupos.js';
+import Level4_Decisiones from './scenes/Level4_Decisiones.js';
 
 const config = {
     type: Phaser.AUTO,
@@ -25,7 +26,7 @@ const config = {
             gravity: { y: 0 }
         }
     },
-    scene: [BootScene, PreloaderScene, MainMenu, Level1_Semaforo, Level2_Lonchera, Level3_Grupos]
+    scene: [BootScene, PreloaderScene, MainMenu, Level1_Semaforo, Level2_Lonchera, Level3_Grupos, Level4_Decisiones]
 };
 
 const game = new Phaser.Game(config);
