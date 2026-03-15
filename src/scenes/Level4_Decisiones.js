@@ -84,12 +84,12 @@ export default class Level4_Decisiones extends Phaser.Scene {
 
         // 3. Contenedores Visuales de A y B (Áreas Invisibles)
         
-        // Opción A - Bajadas 50px
+        // Opción A - Bajadas 50px (Ajuste de escala a 0.25 y posición balanceada)
         this.zonaA = this.add.zone(250, 370, 150, 200).setInteractive({ useHandCursor: true });
             
-        this.imgOpA = this.add.image(250, 350, 'manzana').setScale(0.15).setDepth(7);
+        this.imgOpA = this.add.image(250, 330, 'manzana').setScale(0.25).setDepth(7);
         
-        this.textOptionA = this.add.text(250, 430, 'A', {
+        this.textOptionA = this.add.text(250, 460, 'A', {
             fontFamily: 'Arial',
             fontSize: '24px',
             color: '#ffffff',
@@ -99,12 +99,12 @@ export default class Level4_Decisiones extends Phaser.Scene {
             align: 'center'
         }).setOrigin(0.5).setDepth(7);
 
-        // Opción B - Bajadas 50px
+        // Opción B - Bajadas 50px (Ajuste de escala a 0.25 y posición balanceada)
         this.zonaB = this.add.zone(550, 370, 150, 200).setInteractive({ useHandCursor: true });
             
-        this.imgOpB = this.add.image(550, 350, 'dulces').setScale(0.15).setDepth(7);
+        this.imgOpB = this.add.image(550, 330, 'dulces').setScale(0.25).setDepth(7);
         
-        this.textOptionB = this.add.text(550, 430, 'B', {
+        this.textOptionB = this.add.text(550, 460, 'B', {
             fontFamily: 'Arial',
             fontSize: '24px',
             color: '#ffffff',

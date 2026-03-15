@@ -63,15 +63,15 @@ export default class Level2_Lonchera extends Phaser.Scene {
         this.add.image(730, 480, 'nutri').setScale(0.2).setDepth(10);
 
         // Configuramos los alimentos y si son saludables (true/false)
-        // Ajuste final de posiciones X para escala 0.25 (Balance perfecto entre tamaño y elegancia)
+        // Ajuste de espaciado para evitar superposición (rango 120-680, espacio ~93px)
         const alimentosData = [
-            { id: 'manzana', x: 140, saludable: true },
-            { id: 'gaseosa', x: 225, saludable: false },
-            { id: 'pan',     x: 310, saludable: true },
-            { id: 'agua',    x: 395, saludable: true },
-            { id: 'papas',   x: 480, saludable: false },
-            { id: 'yogur',   x: 565, saludable: true },
-            { id: 'dulces',  x: 650, saludable: false }
+            { id: 'manzana', x: 120, saludable: true },
+            { id: 'gaseosa', x: 213, saludable: false },
+            { id: 'pan',     x: 306, saludable: true },
+            { id: 'agua',    x: 399, saludable: true },
+            { id: 'papas',   x: 492, saludable: false },
+            { id: 'yogur',   x: 585, saludable: true },
+            { id: 'dulces',  x: 678, saludable: false }
         ];
 
         alimentosData.forEach(item => {
