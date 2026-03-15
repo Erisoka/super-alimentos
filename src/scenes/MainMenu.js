@@ -29,7 +29,7 @@ export default class MainMenu extends Phaser.Scene {
         // Eventos del botón
         btnPlay.on('pointerdown', () => {
             this.sound.play('click');
-            this.scene.start('Level1_Semaforo');
+            this.scene.start('IntroStoryScene');
         });
 
         btnPlay.on('pointerover', () => {
