@@ -8,7 +8,7 @@ export default class IntroCharactersScene extends Phaser.Scene {
         this.add.image(400, 300, 'bg_menu').setDisplaySize(800, 600);
         this.add.rectangle(400, 300, 800, 600, 0x8bc34a).setAlpha(0.95);
 
-        this.add.text(400, 50, 'Personajes del juego', {
+        this.add.text(400, 40, 'Personajes del juego', {
             fontFamily: 'Arial',
             fontSize: '36px',
             color: '#000000',
@@ -26,16 +26,16 @@ export default class IntroCharactersScene extends Phaser.Scene {
         // 2. Lista de Personajes (Izquierda)
         
         // Nutri
-        this.add.image(80, 140, 'nutri').setScale(0.12);
-        this.add.text(140, 130, 'Nutri – El guía del juego que explica\ncada misión.', textStyle);
+        this.add.image(80, 110, 'nutri').setScale(0.12);
+        this.add.text(140, 100, 'Nutri – El guía del juego que explica\ncada misión.', textStyle);
 
         // Frutina
-        this.add.image(80, 220, 'frutina').setScale(0.15);
-        this.add.text(140, 210, 'Frutina – Representa las frutas y\nenseña por qué son importantes.', textStyle);
+        this.add.image(80, 200, 'frutina').setScale(0.15);
+        this.add.text(140, 190, 'Frutina – Representa las frutas y\nenseña por qué son importantes.', textStyle);
 
         // Verdurín
-        this.add.image(80, 300, 'verdurin').setScale(0.15);
-        this.add.text(140, 290, 'Verdurín – Explica la importancia\nde las verduras.', textStyle);
+        this.add.image(80, 290, 'verdurin').setScale(0.15);
+        this.add.text(140, 280, 'Verdurín – Explica la importancia\nde las verduras.', textStyle);
 
         // Agüita
         this.add.image(80, 380, 'aguita').setScale(0.15);
@@ -43,9 +43,9 @@ export default class IntroCharactersScene extends Phaser.Scene {
 
         // Don Chatarra
         // Intentamos cargar la imagen 'chatarra' si existe, si no, un emoji
-        const chatarra = this.add.image(80, 460, 'chatarra').setScale(0.15);
+        const chatarra = this.add.image(80, 490, 'chatarra').setScale(0.12);
         // Si por alguna razón no carga bien o prefieres emoji, se puede ajustar
-        this.add.text(140, 460, 'Don Chatarra – Personaje que aparece\ncuando se eligen alimentos poco\nsaludables.', textStyle);
+        this.add.text(140, 470, 'Don Chatarra – Personaje que aparece\ncuando se eligen alimentos poco\nsaludables.', textStyle);
 
         // 3. Imagen de Grupo (Derecha) - La pandilla unida
         this.add.image(600, 250, 'nutri').setScale(0.3);
