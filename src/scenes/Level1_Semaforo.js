@@ -55,13 +55,6 @@ export default class Level1_Semaforo extends Phaser.Scene {
         const zonaVerde = this.add.zone(400, 310, zoneWidth, zoneHeight).setRectangleDropZone(zoneWidth, zoneHeight);
         zonaVerde.colorCorrecto = 'verde';
 
-        // Truco de experto: Debug de las zonas
-        const graphics = this.add.graphics();
-        graphics.lineStyle(2, 0xffff00);
-        graphics.strokeRect(zonaRoja.x - zonaRoja.input.hitArea.width / 2, zonaRoja.y - zonaRoja.input.hitArea.height / 2, zonaRoja.input.hitArea.width, zonaRoja.input.hitArea.height);
-        graphics.strokeRect(zonaAmarilla.x - zonaAmarilla.input.hitArea.width / 2, zonaAmarilla.y - zonaAmarilla.input.hitArea.height / 2, zonaAmarilla.input.hitArea.width, zonaAmarilla.input.hitArea.height);
-        graphics.strokeRect(zonaVerde.x - zonaVerde.input.hitArea.width / 2, zonaVerde.y - zonaVerde.input.hitArea.height / 2, zonaVerde.input.hitArea.width, zonaVerde.input.hitArea.height);
-
         // Bandeja inferior y Alimentos (Depth 10)
         this.add.rectangle(400, 530, 600, 120, 0xffffff, 0.5)
             .setStrokeStyle(4, 0xf5deb3)
