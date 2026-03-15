@@ -27,6 +27,7 @@ export default class PreloaderScene extends Phaser.Scene {
 
         // Nivel 2 - Lonchera
         this.load.image('lonchera', 'assets/images/lonchera.png');
+        this.load.image('lonchera_llena', 'assets/images/lonchera_llena.png');
         this.load.image('yogur', 'assets/images/yogur.png');
         this.load.image('pan', 'assets/images/pan.png');
         this.load.image('gaseosa', 'assets/images/gaseosa.png');

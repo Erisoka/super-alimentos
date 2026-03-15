@@ -18,7 +18,7 @@ export default class Level2_Lonchera extends Phaser.Scene {
             .setDepth(10);
         
         btnBack.on('pointerdown', () => {
-            this.scene.start('MainMenu');
+            this.scene.start('Level1_Semaforo');
         });
 
         const btnPause = this.add.image(110, 40, 'btn_pause')
