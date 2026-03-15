@@ -13,6 +13,7 @@ export default class PreloaderScene extends Phaser.Scene {
         this.load.image('aguita', 'assets/images/aguita.png');
 
         // Interfaz del Nivel 1
+        this.load.image('title_n1', 'assets/images/title_n1.png');
         this.load.image('semaforo', 'assets/images/semaforo.png');
         this.load.image('btn_pause', 'assets/images/btn_pause.png');
         this.load.image('btn_back', 'assets/images/btn_back.png');

@@ -36,24 +36,27 @@ export default class Level1_Semaforo extends Phaser.Scene {
             stroke: '#000000',
             strokeThickness: 4
         }).setOrigin(0.5, 0.5).setDepth(10);
+        
+        // Título del Nivel
+        this.add.image(400, 100, 'title_n1').setScale(0.35).setDepth(10);
 
-        // Área Central y Semáforo (Depth 5)
-        this.add.image(400, 240, 'semaforo').setScale(0.5).setDepth(5);
+        // Área Central y Semáforo (Depth 5) - Lo bajamos 15px más
+        this.add.image(400, 305, 'semaforo').setScale(0.5).setDepth(5);
 
         // Zonas de Caída (Drop Zones) encima de los colores del semáforo
         const zoneWidth = 100;
         const zoneHeight = 100;
         
         // Zona Roja (arriba)
-        const zonaRoja = this.add.zone(400, 130, zoneWidth, zoneHeight).setRectangleDropZone(zoneWidth, zoneHeight);
+        const zonaRoja = this.add.zone(400, 195, zoneWidth, zoneHeight).setRectangleDropZone(zoneWidth, zoneHeight);
         zonaRoja.colorCorrecto = 'rojo';
 
         // Zona Amarilla (medio)
-        const zonaAmarilla = this.add.zone(400, 240, zoneWidth, zoneHeight).setRectangleDropZone(zoneWidth, zoneHeight);
+        const zonaAmarilla = this.add.zone(400, 305, zoneWidth, zoneHeight).setRectangleDropZone(zoneWidth, zoneHeight);
         zonaAmarilla.colorCorrecto = 'amarillo';
 
         // Zona Verde (abajo). Ajustamos la Y restando 40 px acorde a tu solicitud.
-        const zonaVerde = this.add.zone(400, 310, zoneWidth, zoneHeight).setRectangleDropZone(zoneWidth, zoneHeight);
+        const zonaVerde = this.add.zone(400, 375, zoneWidth, zoneHeight).setRectangleDropZone(zoneWidth, zoneHeight);
         zonaVerde.colorCorrecto = 'verde';
 
         // Bandeja inferior y Alimentos (Depth 10)
@@ -81,7 +84,7 @@ export default class Level1_Semaforo extends Phaser.Scene {
         this.nutri = this.add.image(730, 480, 'nutri').setScale(0.2).setDepth(10);
 
         // Texto sobre el personaje
-        this.add.text(580, 380, '¡Hola! Arrastra los\nalimentos al color correcto.', {
+        this.add.text(640, 320, '¡Hola! Arrastra los\nalimentos al color correcto.', {
             fontFamily: 'Arial',
             fontSize: '18px',
             color: '#000000',
