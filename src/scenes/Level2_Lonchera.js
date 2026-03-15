@@ -122,8 +122,11 @@ export default class Level2_Lonchera extends Phaser.Scene {
         // Ocultar lonchera vacía
         this.loncheraVacia.setVisible(false);
 
-        // Mostrar lonchera llena con destello
-        const loncheraLlena = this.add.image(400, 260, 'lonchera_llena').setScale(0.6).setDepth(5);
+        // Panel oscuro semitransparente (Depth 19 para tapar fondo, pero dejar la lonchera en 20 visible y resaltada)
+        this.add.rectangle(400, 300, 800, 600, 0x000000, 0.7).setDepth(19);
+
+        // Mostrar lonchera llena con destello (Depth 20)
+        const loncheraLlena = this.add.image(400, 260, 'lonchera_llena').setScale(0.6).setDepth(20);
         loncheraLlena.setAlpha(0); // Empezar invisible para el efecto
         
         // Destello (Fade In + un poco de crecimiento)
@@ -139,28 +142,26 @@ export default class Level2_Lonchera extends Phaser.Scene {
             }
         });
 
-        // Panel de victoria (Depth 30)
-        this.add.rectangle(400, 300, 800, 600, 0x000000, 0.7).setDepth(30);
-
-        const mensajeVictoria = this.add.text(400, 200, '¡Excelente!\nHas preparado una lonchera\nque te dará mucha energía.', {
+        const mensajeVictoria = this.add.text(400, 120, '¡Excelente!\nHas preparado una lonchera\nque te dará mucha energía.', {
             fontFamily: 'Arial',
-            fontSize: '36px',
+            fontSize: '42px',
             color: '#FFD700',
             stroke: '#000000',
-            strokeThickness: 6,
+            strokeThickness: 8,
             align: 'center'
         }).setOrigin(0.5).setDepth(30);
 
-        this.add.image(400, 350, 'nutri').setScale(0.3).setDepth(30);
+        // Personaje Nutri en su esquina (Depth 21)
+        this.add.image(730, 480, 'nutri').setScale(0.2).setDepth(21);
 
-        // Botón Siguiente Nivel
-        const btnSiguiente = this.add.text(400, 500, '[ Siguiente Nivel ]', {
+        // Botón Siguiente Nivel (Depth 25)
+        const btnSiguiente = this.add.text(400, 450, '[ Siguiente Nivel ]', {
             fontFamily: 'Arial',
             fontSize: '28px',
             color: '#FFFFFF',
             backgroundColor: '#4CAF50',
             padding: { x: 20, y: 10 }
-        }).setOrigin(0.5).setInteractive({ useHandCursor: true }).setDepth(30);
+        }).setOrigin(0.5).setInteractive({ useHandCursor: true }).setDepth(25);
 
         btnSiguiente.on('pointerdown', () => {
             this.scene.start('Level3_Grupos');
