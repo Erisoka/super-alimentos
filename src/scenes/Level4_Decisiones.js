@@ -29,6 +29,7 @@ export default class Level4_Decisiones extends Phaser.Scene {
             .setDepth(10);
         
         btnBack.on('pointerdown', () => {
+            this.sound.play('click');
             this.scene.start('Level3_Grupos');
         });
 
@@ -135,6 +136,7 @@ export default class Level4_Decisiones extends Phaser.Scene {
         const datos = this.preguntas[this.preguntaActual];
 
         if (opcionElegida === datos.correcta) {
+            this.sound.play('success');
             // Correcto
             this.score += 10;
             this.scoreText.setText(this.score);
@@ -159,6 +161,7 @@ export default class Level4_Decisiones extends Phaser.Scene {
                 this.cargarPregunta();
             }
         } else {
+            this.sound.play('error');
             // Incorrecto
             this.globoNutri.setText('¡Los dulces no dan buena energía!\nIntenta de nuevo.');
             this.globoNutri.setVisible(true);
@@ -206,19 +209,20 @@ export default class Level4_Decisiones extends Phaser.Scene {
             emitting: true
         });
         confeti.setDepth(30);
+        this.sound.play('win');
 
         // La pandilla celebrando en la parte inferior
-        const nutriVictor = this.add.image(200, 450, 'nutri').setScale(0.25).setDepth(31);
-        const frutinaVictor = this.add.image(350, 450, 'frutina').setScale(0.3).setDepth(31);
-        const verdurinVictor = this.add.image(500, 480, 'verdurin').setScale(0.3).setDepth(31);
-        const aguitaVictor = this.add.image(650, 450, 'aguita').setScale(0.3).setDepth(31);
+        const nutriVictor = this.add.image(150, 520, 'nutri').setScale(0.18).setDepth(40);
+        const frutinaVictor = this.add.image(310, 520, 'frutina').setScale(0.18).setDepth(40);
+        const verdurinVictor = this.add.image(490, 520, 'verdurin').setScale(0.18).setDepth(40);
+        const aguitaVictor = this.add.image(650, 520, 'aguita').setScale(0.18).setDepth(40);
         
         this.nutri.setVisible(false); // Ocultar al nutri original
 
         // Animación de salto final
         this.tweens.add({
             targets: [nutriVictor, frutinaVictor, verdurinVictor, aguitaVictor],
-            y: '-=40',
+            y: '-=20',
             duration: 400,
             yoyo: true,
             repeat: -1,
@@ -226,9 +230,9 @@ export default class Level4_Decisiones extends Phaser.Scene {
         });
 
         // Mensaje final largo
-        this.add.text(400, 150, '¡Felicitaciones!\nAhora sabes cómo elegir alimentos saludables.\nRecuerda comer frutas y verduras, beber agua\ny evitar demasiados dulces.\n¡Tu cuerpo te lo agradecerá!', {
+        this.add.text(400, 160, '¡Felicitaciones!\nAhora sabes cómo elegir alimentos saludables.\nRecuerda comer frutas y verduras, beber agua\ny evitar demasiados dulces.\n¡Tu cuerpo te lo agradecerá!', {
             fontFamily: 'Arial',
-            fontSize: '28px',
+            fontSize: '26px',
             color: '#ffffff',
             stroke: '#00AA00', // Borde verde grueso
             strokeThickness: 8,
@@ -237,15 +241,15 @@ export default class Level4_Decisiones extends Phaser.Scene {
         }).setOrigin(0.5).setDepth(32);
 
         // Botón a la Escena de Videos
-        const btnVideo = this.add.image(400, 520, 'btn_video')
+        const btnVideo = this.add.image(400, 350, 'btn_video')
             .setInteractive({ useHandCursor: true })
-            .setScale(0.8) 
-            .setDepth(30);
+            .setScale(0.3) 
+            .setDepth(50);
             
         // Efecto pulso para el botón
         this.tweens.add({
             targets: btnVideo,
-            scale: 0.85,
+            scale: 0.35,
             duration: 600,
             yoyo: true,
             repeat: -1,
@@ -253,6 +257,7 @@ export default class Level4_Decisiones extends Phaser.Scene {
         });
 
         btnVideo.on('pointerdown', () => {
+            this.sound.play('click');
             this.scene.start('VideosScene');
         });
     }

@@ -30,14 +30,14 @@ export default class VideosScene extends Phaser.Scene {
         // Videos y Miniaturas
         
         // --- Video 1 ---
-        const thumb1 = this.add.image(200, 320, 'thumb1')
+        const thumb1 = this.add.image(150, 300, 'thumb1')
             .setInteractive({ useHandCursor: true })
-            .setScale(0.3)
+            .setDisplaySize(220, 130)
             .setDepth(5);
             
-        this.add.text(200, 450, 'El Semáforo de\nlos alimentos', {
+        this.add.text(150, 400, 'El Semáforo de\nlos alimentos', {
             fontFamily: 'Arial',
-            fontSize: '20px',
+            fontSize: '18px',
             color: '#ffffff',
             align: 'center',
             stroke: '#000000',
@@ -49,14 +49,14 @@ export default class VideosScene extends Phaser.Scene {
         });
 
         // --- Video 2 ---
-        const thumb2 = this.add.image(400, 320, 'thumb2')
+        const thumb2 = this.add.image(400, 300, 'thumb2')
             .setInteractive({ useHandCursor: true })
-            .setScale(0.3)
+            .setDisplaySize(220, 130)
             .setDepth(5);
             
-        this.add.text(400, 450, '¿Qué es la\ncomida chatarra?', {
+        this.add.text(400, 400, '¿Qué es la\ncomida chatarra?', {
             fontFamily: 'Arial',
-            fontSize: '20px',
+            fontSize: '18px',
             color: '#ffffff',
             align: 'center',
             stroke: '#000000',
@@ -68,14 +68,14 @@ export default class VideosScene extends Phaser.Scene {
         });
 
         // --- Video 3 ---
-        const thumb3 = this.add.image(600, 320, 'thumb3')
+        const thumb3 = this.add.image(650, 300, 'thumb3')
             .setInteractive({ useHandCursor: true })
-            .setScale(0.3)
+            .setDisplaySize(220, 130)
             .setDepth(5);
             
-        this.add.text(600, 450, 'Cuento: Rico y la\ncomida chatarra', {
+        this.add.text(650, 400, 'Cuento: Rico y la\ncomida chatarra', {
             fontFamily: 'Arial',
-            fontSize: '20px',
+            fontSize: '18px',
             color: '#ffffff',
             align: 'center',
             stroke: '#000000',
@@ -86,12 +86,17 @@ export default class VideosScene extends Phaser.Scene {
             window.open('https://www.youtube.com/watch?v=t_VVWwb3Vys', '_blank');
         });
         
-        // Animación Hover
+        // Animación Hover adaptada para DisplaySize
         const applyHover = (thumb) => {
+            // Guardamos tamaño original
+            const baseW = 220;
+            const baseH = 130;
+            
             thumb.on('pointerover', () => {
                 this.tweens.add({
                     targets: thumb,
-                    scale: 0.35,
+                    displayWidth: baseW * 1.1,
+                    displayHeight: baseH * 1.1,
                     duration: 150,
                     ease: 'Power1'
                 });
@@ -99,7 +104,8 @@ export default class VideosScene extends Phaser.Scene {
             thumb.on('pointerout', () => {
                 this.tweens.add({
                     targets: thumb,
-                    scale: 0.3,
+                    displayWidth: baseW,
+                    displayHeight: baseH,
                     duration: 150,
                     ease: 'Power1'
                 });

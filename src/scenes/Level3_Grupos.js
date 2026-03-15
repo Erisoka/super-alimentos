@@ -18,6 +18,7 @@ export default class Level3_Grupos extends Phaser.Scene {
             .setDepth(10);
         
         btnBack.on('pointerdown', () => {
+            this.sound.play('click');
             this.scene.start('Level2_Lonchera');
         });
 
@@ -111,6 +112,7 @@ export default class Level3_Grupos extends Phaser.Scene {
 
         this.input.on('drop', (pointer, gameObject, dropZone) => {
             if (gameObject.grupoCorrecto === dropZone.grupoCorrecto) {
+                this.sound.play('success');
                 this.score += 10;
                 this.scoreText.setText(this.score);
                 gameObject.destroy();
@@ -119,6 +121,7 @@ export default class Level3_Grupos extends Phaser.Scene {
                     this.finalizarNivel();
                 }
             } else {
+                this.sound.play('error');
                 gameObject.input.dropZone = false; 
             }
         });
@@ -141,7 +144,6 @@ export default class Level3_Grupos extends Phaser.Scene {
         // Panel semitransparente oscuro
         this.add.rectangle(400, 300, 800, 600, 0x000000, 0.7).setDepth(30);
 
-        // Efecto de Confeti (Partículas)
         const confeti = this.add.particles(400, 100, 'star', {
             speed: { min: 100, max: 400 },
             angle: { min: 0, max: 360 },
@@ -153,6 +155,7 @@ export default class Level3_Grupos extends Phaser.Scene {
             emitting: true
         });
         confeti.setDepth(30);
+        this.sound.play('win');
 
         // Texto alegre
         this.add.text(400, 200, '¡Genial! Cada grupo ayuda a\ntu cuerpo de forma diferente.', {
@@ -188,6 +191,7 @@ export default class Level3_Grupos extends Phaser.Scene {
         }).setOrigin(0.5).setDepth(30).setInteractive({ useHandCursor: true });
 
         btnNext.on('pointerdown', () => {
+            this.sound.play('click');
             this.scene.start('Level4_Decisiones');
         });
         

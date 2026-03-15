@@ -19,6 +19,7 @@ export default class Level2_Lonchera extends Phaser.Scene {
             .setDepth(10);
         
         btnBack.on('pointerdown', () => {
+            this.sound.play('click');
             this.scene.start('Level1_Semaforo');
         });
 
@@ -77,6 +78,7 @@ export default class Level2_Lonchera extends Phaser.Scene {
 
             alimento.on('pointerdown', () => {
                 if (item.saludable) {
+                    this.sound.play('success');
                     // Sumamos 10 puntos e inhabilitamos el clic
                     this.score += 10;
                     this.scoreText.setText(this.score);
@@ -102,6 +104,7 @@ export default class Level2_Lonchera extends Phaser.Scene {
                         }
                     });
                 } else {
+                    this.sound.play('error');
                     // Alimento NO saludable
                     this.textoInstrucciones.setText('¡Cuidado! Ese alimento tiene\nmucha azúcar o grasa.');
                     
@@ -151,7 +154,6 @@ export default class Level2_Lonchera extends Phaser.Scene {
             }
         });
 
-        // Efecto de Confeti (Partículas)
         const confeti = this.add.particles(400, 100, 'star', {
             speed: { min: 100, max: 400 },
             angle: { min: 0, max: 360 },
@@ -163,6 +165,7 @@ export default class Level2_Lonchera extends Phaser.Scene {
             emitting: true
         });
         confeti.setDepth(30);
+        this.sound.play('win');
 
         // Invocar a la pandilla
         const frutina = this.add.image(150, 480, 'frutina').setScale(0.25).setDepth(25);
@@ -202,6 +205,7 @@ export default class Level2_Lonchera extends Phaser.Scene {
         }).setOrigin(0.5).setInteractive({ useHandCursor: true }).setDepth(25);
 
         btnSiguiente.on('pointerdown', () => {
+            this.sound.play('click');
             this.scene.start('Level3_Grupos');
         });
     }

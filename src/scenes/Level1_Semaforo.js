@@ -18,6 +18,7 @@ export default class Level1_Semaforo extends Phaser.Scene {
             .setDepth(10);
         
         btnBack.on('pointerdown', () => {
+            this.sound.play('click');
             this.scene.start('MainMenu');
         });
 
@@ -101,6 +102,7 @@ export default class Level1_Semaforo extends Phaser.Scene {
 
         this.input.on('drop', (pointer, gameObject, dropZone) => {
             if (gameObject.colorCorrecto === dropZone.colorCorrecto) {
+                this.sound.play('success');
                 this.score += 10;
                 this.scoreText.setText(this.score);
                 gameObject.destroy();
@@ -110,6 +112,7 @@ export default class Level1_Semaforo extends Phaser.Scene {
                     this.mostrarVictoria();
                 }
             } else {
+                this.sound.play('error');
                 gameObject.input.dropZone = false; 
             }
         });
@@ -129,6 +132,7 @@ export default class Level1_Semaforo extends Phaser.Scene {
     }
 
     mostrarVictoria() {
+        this.sound.play('win');
         // Panel semitransparente oscuro
         this.add.rectangle(400, 300, 800, 600, 0x000000, 0.7).setDepth(30);
 
@@ -191,6 +195,7 @@ export default class Level1_Semaforo extends Phaser.Scene {
         }).setOrigin(0.5).setDepth(30).setInteractive({ useHandCursor: true });
 
         btnNext.on('pointerdown', () => {
+            this.sound.play('click');
             this.scene.start('Level2_Lonchera');
         });
         

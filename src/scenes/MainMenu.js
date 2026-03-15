@@ -4,6 +4,11 @@ export default class MainMenu extends Phaser.Scene {
     }
 
     create() {
+        // Iniciar BGM si no está sonando ya
+        if (!this.sound.get('bgm')) {
+            this.sound.play('bgm', { loop: true, volume: 0.3 });
+        }
+
         // Fondo centrado y ajustado al tamaño del lienzo (Profundidad 0)
         this.add.image(400, 300, 'bg_menu').setDisplaySize(800, 600).setDepth(0);
 
@@ -23,6 +28,7 @@ export default class MainMenu extends Phaser.Scene {
 
         // Eventos del botón
         btnPlay.on('pointerdown', () => {
+            this.sound.play('click');
             this.scene.start('Level1_Semaforo');
         });
 
