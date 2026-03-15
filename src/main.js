@@ -9,6 +9,7 @@ import VideosScene from './scenes/VideosScene.js';
 import IntroStoryScene from './scenes/IntroStoryScene.js';
 import IntroCharactersScene from './scenes/IntroCharactersScene.js';
 import IntroLevel1 from './scenes/IntroLevel1.js';
+import IntroLevel2 from './scenes/IntroLevel2.js';
 
 const config = {
     type: Phaser.AUTO,
@@ -30,7 +31,7 @@ const config = {
             gravity: { y: 0 }
         }
     },
-    scene: [BootScene, PreloaderScene, MainMenu, IntroStoryScene, IntroCharactersScene, IntroLevel1, Level1_Semaforo, Level2_Lonchera, Level3_Grupos, Level4_Decisiones, VideosScene]
+    scene: [BootScene, PreloaderScene, MainMenu, IntroStoryScene, IntroCharactersScene, IntroLevel1, Level1_Semaforo, IntroLevel2, Level2_Lonchera, Level3_Grupos, Level4_Decisiones, VideosScene]
 };
 
 const game = new Phaser.Game(config);

@@ -199,7 +199,7 @@ export default class Level1_Semaforo extends Phaser.Scene {
 
         btnNext.on('pointerdown', () => {
             this.sound.play('click');
-            this.scene.start('Level2_Lonchera');
+            this.scene.start('IntroLevel2');
         });
         
         btnNext.on('pointerover', () => {
