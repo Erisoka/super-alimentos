@@ -1,6 +1,7 @@
 import BootScene from './scenes/BootScene.js';
 import PreloaderScene from './scenes/PreloaderScene.js';
 import MainMenu from './scenes/MainMenu.js';
+import Level1_Semaforo from './scenes/Level1_Semaforo.js';
 
 const config = {
     type: Phaser.AUTO,
@@ -18,7 +19,7 @@ const config = {
             gravity: { y: 0 }
         }
     },
-    scene: [BootScene, PreloaderScene, MainMenu]
+    scene: [BootScene, PreloaderScene, MainMenu, Level1_Semaforo]
 };
 
 const game = new Phaser.Game(config);

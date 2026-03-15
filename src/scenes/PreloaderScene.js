@@ -11,6 +11,19 @@ export default class PreloaderScene extends Phaser.Scene {
         this.load.image('frutina', 'assets/images/fruti.png');
         this.load.image('verdurin', 'assets/images/verdurin.png');
         this.load.image('aguita', 'assets/images/aguita.png');
+
+        // Interfaz del Nivel 1
+        this.load.image('semaforo', 'assets/images/semaforo.png');
+        this.load.image('btn_pause', 'assets/images/btn_pause.png');
+        this.load.image('btn_back', 'assets/images/btn_back.png');
+        this.load.image('star', 'assets/images/star.png');
+
+        // Alimentos
+        this.load.image('manzana', 'assets/images/manzana.png');
+        this.load.image('agua', 'assets/images/agua.png');
+        this.load.image('huevo', 'assets/images/huevo.png');
+        this.load.image('pizza', 'assets/images/pizza.png');
+        this.load.image('dulces', 'assets/images/dulces.png');
     }
 
     create() {

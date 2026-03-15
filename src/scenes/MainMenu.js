@@ -4,14 +4,21 @@ export default class MainMenu extends Phaser.Scene {
     }
 
     create() {
-        // Fondo centrado y ajustado al tamaño del lienzo
-        this.add.image(400, 300, 'bg_menu').setDisplaySize(800, 600);
+        // Fondo centrado y ajustado al tamaño del lienzo (Profundidad 0)
+        this.add.image(400, 300, 'bg_menu').setDisplaySize(800, 600).setDepth(0);
 
-        // Título escalado en la parte superior
-        this.add.image(400, 120, 'title').setScale(0.8);
+        // Personajes (Profundidad 1) detrás de los botones
+        this.add.image(150, 380, 'nutri').setScale(0.25).setDepth(1);
+        this.add.image(200, 520, 'verdurin').setScale(0.25).setDepth(1);
+        this.add.image(650, 380, 'frutina').setScale(0.25).setDepth(1);
+        this.add.image(600, 520, 'aguita').setScale(0.25).setDepth(1);
 
-        // Botón de jugar interactivo
-        const btnPlay = this.add.image(400, 350, 'btn_play')
+        // Título escalado en la parte superior (Profundidad 10)
+        this.add.image(400, 120, 'title').setScale(0.7).setDepth(10);
+
+        // Botón de jugar interactivo (Profundidad 10)
+        const btnPlay = this.add.image(400, 320, 'btn_play')
+            .setDepth(10)
             .setInteractive({ useHandCursor: true });
 
         // Eventos del botón
@@ -26,11 +33,5 @@ export default class MainMenu extends Phaser.Scene {
         btnPlay.on('pointerout', () => {
             btnPlay.setScale(1);
         });
-
-        // Personajes alrededor del botón (tamaño ajustado)
-        this.add.image(180, 250, 'nutri').setScale(0.4);
-        this.add.image(620, 250, 'frutina').setScale(0.4);
-        this.add.image(180, 480, 'verdurin').setScale(0.4);
-        this.add.image(620, 480, 'aguita').setScale(0.4);
     }
 }
