@@ -40,7 +40,6 @@ export default class Level1_Semaforo extends Phaser.Scene {
         this.add.image(400, 240, 'semaforo').setScale(0.5).setDepth(5);
 
         // Zonas de Caída (Drop Zones) encima de los colores del semáforo
-        // El semáforo está centrado en (400, 240). Y aproximadas para los 3 colores:
         const zoneWidth = 100;
         const zoneHeight = 100;
         
@@ -52,10 +51,16 @@ export default class Level1_Semaforo extends Phaser.Scene {
         const zonaAmarilla = this.add.zone(400, 240, zoneWidth, zoneHeight).setRectangleDropZone(zoneWidth, zoneHeight);
         zonaAmarilla.colorCorrecto = 'amarillo';
 
-        // Zona Verde (abajo)
-        const zonaVerde = this.add.zone(400, 350, zoneWidth, zoneHeight).setRectangleDropZone(zoneWidth, zoneHeight);
+        // Zona Verde (abajo). Ajustamos la Y restando 40 px acorde a tu solicitud.
+        const zonaVerde = this.add.zone(400, 310, zoneWidth, zoneHeight).setRectangleDropZone(zoneWidth, zoneHeight);
         zonaVerde.colorCorrecto = 'verde';
 
+        // Truco de experto: Debug de las zonas
+        const graphics = this.add.graphics();
+        graphics.lineStyle(2, 0xffff00);
+        graphics.strokeRect(zonaRoja.x - zonaRoja.input.hitArea.width / 2, zonaRoja.y - zonaRoja.input.hitArea.height / 2, zonaRoja.input.hitArea.width, zonaRoja.input.hitArea.height);
+        graphics.strokeRect(zonaAmarilla.x - zonaAmarilla.input.hitArea.width / 2, zonaAmarilla.y - zonaAmarilla.input.hitArea.height / 2, zonaAmarilla.input.hitArea.width, zonaAmarilla.input.hitArea.height);
+        graphics.strokeRect(zonaVerde.x - zonaVerde.input.hitArea.width / 2, zonaVerde.y - zonaVerde.input.hitArea.height / 2, zonaVerde.input.hitArea.width, zonaVerde.input.hitArea.height);
 
         // Bandeja inferior y Alimentos (Depth 10)
         this.add.rectangle(400, 530, 600, 120, 0xffffff, 0.5)
@@ -69,7 +74,6 @@ export default class Level1_Semaforo extends Phaser.Scene {
         const huevo = this.add.image(300, 530, 'huevo').setScale(0.15).setDepth(10).setInteractive({ draggable: true });
         huevo.colorCorrecto = 'amarillo';
 
-        // Reducimos un poco más la pizza para igualar visualmente el tamaño
         const pizza = this.add.image(400, 530, 'pizza').setScale(0.1).setDepth(10).setInteractive({ draggable: true });
         pizza.colorCorrecto = 'rojo';
 
@@ -79,9 +83,8 @@ export default class Level1_Semaforo extends Phaser.Scene {
         const dulces = this.add.image(600, 530, 'dulces').setScale(0.15).setDepth(10).setInteractive({ draggable: true });
         dulces.colorCorrecto = 'rojo';
 
-
-        // Personaje Nutri (Depth 10)
-        this.add.image(730, 480, 'nutri').setScale(0.2).setDepth(10);
+        // Personaje Nutri guardado en this para poder animarlo luego (Depth 10)
+        this.nutri = this.add.image(730, 480, 'nutri').setScale(0.2).setDepth(10);
 
         // Texto sobre el personaje
         this.add.text(580, 380, '¡Hola! Arrastra los\nalimentos al color correcto.', {
@@ -93,10 +96,8 @@ export default class Level1_Semaforo extends Phaser.Scene {
             padding: { x: 10, y: 10 }
         }).setOrigin(0.5).setDepth(10);
 
-
         // Eventos de Drag & Drop
         this.input.on('dragstart', (pointer, gameObject) => {
-            // Guardamos posición original (Phaser la guarda automáticamente en input.dragStartX/Y pero nos aseguramos)
             gameObject.setDepth(20);
         });
 
@@ -107,18 +108,20 @@ export default class Level1_Semaforo extends Phaser.Scene {
 
         this.input.on('drop', (pointer, gameObject, dropZone) => {
             if (gameObject.colorCorrecto === dropZone.colorCorrecto) {
-                // Color correcto
                 this.score += 10;
                 this.scoreText.setText(this.score);
                 gameObject.destroy();
+
+                // Validación de victoria
+                if (this.score === 50) {
+                    this.mostrarVictoria();
+                }
             } else {
-                // Color incorrecto: No pasa la validación, actuará como si no hubiera zona en el dragend
                 gameObject.input.dropZone = false; 
             }
         });
 
         this.input.on('dragend', (pointer, gameObject, dropped) => {
-            // Si no fue soltado en una zona de caída (o fue marcado en drop como falso por ser incorrecto)
             if (!dropped || gameObject.input.dropZone === false) {
                 this.tweens.add({
                     targets: gameObject,
@@ -129,6 +132,54 @@ export default class Level1_Semaforo extends Phaser.Scene {
                 });
                 gameObject.setDepth(10);
             }
+        });
+    }
+
+    mostrarVictoria() {
+        // Panel semitransparente oscuro
+        this.add.rectangle(400, 300, 800, 600, 0x000000, 0.7).setDepth(30);
+
+        // Texto alegre
+        this.add.text(400, 200, '¡Excelente!\nAyudaste a Nutri', {
+            fontFamily: 'Arial',
+            fontSize: '48px',
+            color: '#ffffff',
+            stroke: '#ff9900', // Borde naranja
+            strokeThickness: 8,
+            align: 'center'
+        }).setOrigin(0.5).setDepth(30);
+
+        // Animación de Nutri
+        this.nutri.setDepth(30).setPosition(400, 300); // Ponemos a nutri al frente
+        
+        this.tweens.add({
+            targets: this.nutri,
+            y: this.nutri.y - 50,
+            duration: 500,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.inOut'
+        });
+
+        // Botón interactivo Siguiente Nivel
+        const btnNext = this.add.text(400, 420, '[ Siguiente Nivel ]', {
+            fontFamily: 'Arial',
+            fontSize: '32px',
+            color: '#ffffff',
+            backgroundColor: '#008800', // Fondo estilo botón
+            padding: { x: 20, y: 10 }
+        }).setOrigin(0.5).setDepth(30).setInteractive({ useHandCursor: true });
+
+        btnNext.on('pointerdown', () => {
+            this.scene.start('Level2_Lonchera');
+        });
+        
+        btnNext.on('pointerover', () => {
+            btnNext.setScale(1.1);
+        });
+
+        btnNext.on('pointerout', () => {
+            btnNext.setScale(1);
         });
     }
 }
