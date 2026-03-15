@@ -39,6 +39,12 @@ export default class PreloaderScene extends Phaser.Scene {
         this.load.image('carne', 'assets/images/carne.png');
         this.load.image('arroz', 'assets/images/arroz.png');
         this.load.image('banano', 'assets/images/banano.png');
+
+        // Nivel 4 - Decisiones
+        this.load.image('pizarra', 'assets/images/pizarra.png');
+        this.load.image('chatarra', 'assets/images/chatarra.png');
+        this.load.image('dona', 'assets/images/dona.png');
+        this.load.image('hamburguesa', 'assets/images/hamburguesa.png');
     }
 
     create() {
