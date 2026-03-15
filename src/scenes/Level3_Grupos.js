@@ -164,6 +164,20 @@ export default class Level3_Grupos extends Phaser.Scene {
             align: 'center'
         }).setOrigin(0.5).setDepth(30);
 
+        // Personajes secundarios bailando
+        const fruti = this.add.image(200, 450, 'frutina').setScale(0.25).setDepth(25);
+        const verdurin = this.add.image(400, 480, 'verdurin').setScale(0.25).setDepth(25);
+        const aguita = this.add.image(600, 450, 'aguita').setScale(0.25).setDepth(25);
+
+        this.tweens.add({
+            targets: [fruti, verdurin, aguita],
+            angle: { from: -15, to: 15 },
+            duration: 500,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.easeInOut'
+        });
+
         // Botón interactivo Siguiente Nivel
         const btnNext = this.add.text(400, 500, '[ Siguiente Nivel ]', {
             fontFamily: 'Arial',

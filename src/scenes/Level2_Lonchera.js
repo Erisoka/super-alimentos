@@ -164,6 +164,22 @@ export default class Level2_Lonchera extends Phaser.Scene {
         });
         confeti.setDepth(30);
 
+        // Invocar a la pandilla
+        const frutina = this.add.image(150, 480, 'frutina').setScale(0.25).setDepth(25);
+        const verdurin = this.add.image(280, 500, 'verdurin').setScale(0.25).setDepth(25);
+        const aguita = this.add.image(520, 500, 'aguita').setScale(0.25).setDepth(25);
+
+        // Animación de latido / pulso
+        this.tweens.add({
+            targets: [frutina, verdurin, aguita],
+            scaleX: 0.28,
+            scaleY: 0.28,
+            duration: 400,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.easeInOut'
+        });
+
         const mensajeVictoria = this.add.text(400, 120, '¡Excelente!\nHas preparado una lonchera\nque te dará mucha energía.', {
             fontFamily: 'Arial',
             fontSize: '42px',

@@ -167,6 +167,20 @@ export default class Level1_Semaforo extends Phaser.Scene {
             ease: 'Sine.inOut'
         });
 
+        // Personajes secundarios
+        const fruti = this.add.image(200, 450, 'frutina').setScale(0.3).setDepth(25);
+        const aguita = this.add.image(600, 450, 'aguita').setScale(0.3).setDepth(25);
+
+        // Tween de salto
+        this.tweens.add({
+            targets: [fruti, aguita],
+            y: '-=30',
+            duration: 400,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.easeInOut'
+        });
+
         // Botón interactivo Siguiente Nivel
         const btnNext = this.add.text(400, 420, '[ Siguiente Nivel ]', {
             fontFamily: 'Arial',
