@@ -197,7 +197,7 @@ export default class Level3_Grupos extends Phaser.Scene {
 
         btnNext.on('pointerdown', () => {
             this.sound.play('click');
-            this.scene.start('Level4_Decisiones');
+            this.scene.start('IntroLevel4');
         });
         
         btnNext.on('pointerover', () => {

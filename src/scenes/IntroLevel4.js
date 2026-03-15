@@ -1,6 +1,6 @@
-export default class IntroLevel3 extends Phaser.Scene {
+export default class IntroLevel4 extends Phaser.Scene {
     constructor() {
-        super('IntroLevel3');
+        super('IntroLevel4');
     }
 
     create() {
@@ -8,7 +8,7 @@ export default class IntroLevel3 extends Phaser.Scene {
         this.add.image(400, 300, 'bg_menu').setDisplaySize(800, 600);
         this.add.rectangle(400, 300, 800, 600, 0x8bc34a).setAlpha(0.95);
 
-        this.add.text(400, 60, 'Nivel 3: Los grupos de alimentos', {
+        this.add.text(400, 60, 'Nivel 4: Decisiones saludables', {
             fontFamily: 'Arial',
             fontSize: '32px',
             color: '#000000',
@@ -16,25 +16,20 @@ export default class IntroLevel3 extends Phaser.Scene {
         }).setOrigin(0.5);
 
         // 2. Texto Explicativo (Izquierda)
-        const explicacion = 'Introducción del nivel:\nNutri explica: "Los alimentos se dividen en grupos. Cada grupo ayuda a nuestro cuerpo de diferentes maneras."\n\nObjetivo:\nClasificar alimentos por grupos.';
+        const explicacion = 'Introducción del nivel:\nNutri dice: "En nuestra vida diaria debemos elegir alimentos saludables. Veamos qué decisión tomarías."\n\nObjetivo:\nElegir la opción más saludable ante situaciones cotidianas.';
 
         this.add.text(50, 150, explicacion, {
             fontFamily: 'Arial',
             fontSize: '22px',
             color: '#111111',
-            wordWrap: { width: 420 },
+            wordWrap: { width: 450 },
             lineSpacing: 10
         });
 
-        // 3. Imágenes Ilustrativas (Derecha) - Refactorizado para evitar solapamiento
-        
-        // Primero la Canasta (Fondo de los personajes)
-        this.add.image(620, 320, 'canasta_llena').setScale(0.32);
-
-        // Luego la Pandilla (En frente de la canasta)
-        this.add.image(470, 420, 'nutri').setScale(0.22).setAngle(-5); 
-        this.add.image(550, 470, 'verdurin').setScale(0.18);
-        this.add.image(700, 470, 'aguita').setScale(0.16);
+        // 3. Imágenes Ilustrativas (Derecha)
+        this.add.image(650, 300, 'pizarra').setScale(0.3);
+        this.add.image(550, 400, 'nutri').setScale(0.18);
+        this.add.image(720, 430, 'chatarra').setScale(0.22);
 
         // 4. Botón para Iniciar el Nivel
         const btnStart = this.add.text(250, 520, '[ ¡Comenzar! ]', {
@@ -47,7 +42,7 @@ export default class IntroLevel3 extends Phaser.Scene {
 
         btnStart.on('pointerdown', () => {
             this.sound.play('click');
-            this.scene.start('Level3_Grupos');
+            this.scene.start('Level4_Decisiones');
         });
 
         // Efectos del botón
