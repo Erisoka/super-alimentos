@@ -38,8 +38,11 @@ export default class Level2_Lonchera extends Phaser.Scene {
             strokeThickness: 4
         }).setOrigin(0.5, 0.5).setDepth(10);
 
-        // Área Central: Lonchera (Depth 5)
-        this.loncheraVacia = this.add.image(400, 260, 'lonchera').setScale(0.6).setDepth(5);
+        // Título del Nivel
+        this.add.image(400, 100, 'title_n2').setScale(0.35).setDepth(10);
+
+        // Área Central: Lonchera (Depth 5) - Lo bajamos a Y=305 para dar espacio al título
+        this.loncheraVacia = this.add.image(400, 305, 'lonchera').setScale(0.6).setDepth(5);
 
         // Bandeja inferior y Alimentos (Depth 10)
         this.add.rectangle(400, 530, 600, 120, 0xffffff, 0.5)
@@ -47,9 +50,9 @@ export default class Level2_Lonchera extends Phaser.Scene {
             .setDepth(5);
 
         // Texto instructivo sobre el personaje
-        this.textoInstrucciones = this.add.text(580, 380, '¡Armemos una lonchera\npara tener mucha energía!\nElige los alimentos saludables.', {
+        this.textoInstrucciones = this.add.text(640, 320, '¡Armemos una lonchera\npara tener mucha energía!\nElige los alimentos saludables.', {
             fontFamily: 'Arial',
-            fontSize: '18px',
+            fontSize: '16px',
             color: '#000000',
             backgroundColor: '#ffffff',
             align: 'center',
@@ -88,7 +91,7 @@ export default class Level2_Lonchera extends Phaser.Scene {
                     this.tweens.add({
                         targets: alimento,
                         x: 400,
-                        y: 260,
+                        y: 305,
                         scale: 0.05,
                         alpha: 0,
                         duration: 600,
@@ -129,7 +132,7 @@ export default class Level2_Lonchera extends Phaser.Scene {
         this.add.rectangle(400, 300, 800, 600, 0x000000, 0.7).setDepth(19);
 
         // Mostrar lonchera llena (Depth 20)
-        const loncheraLlena = this.add.image(400, 260, 'lonchera_llena').setScale(0.6).setDepth(20);
+        const loncheraLlena = this.add.image(400, 305, 'lonchera_llena').setScale(0.6).setDepth(20);
         loncheraLlena.setAlpha(0); // Empezar invisible para el efecto
         
         // Animación de aparición (Fade In)
