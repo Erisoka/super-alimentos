@@ -79,16 +79,19 @@ export default class Level3_Grupos extends Phaser.Scene {
             .setStrokeStyle(4, 0xf5deb3)
             .setDepth(5);
 
+        // Posiciones X disponibles en la bandeja, mezcladas aleatoriamente
+        const posicionesX = Phaser.Utils.Array.Shuffle([250, 350, 450, 550]);
+
         // Alimentos
         const alimentosData = [
-            { id: 'banano', x: 250, grupo: 'Frutas' },
-            { id: 'brocoli', x: 350, grupo: 'Verduras' },
-            { id: 'carne', x: 450, grupo: 'Proteínas' },
-            { id: 'arroz', x: 550, grupo: 'Cereales' }
+            { id: 'banano', grupo: 'Frutas' },
+            { id: 'brocoli', grupo: 'Verduras' },
+            { id: 'carne', grupo: 'Proteínas' },
+            { id: 'arroz', grupo: 'Cereales' }
         ];
 
-        alimentosData.forEach(item => {
-            const alimento = this.add.image(item.x, 530, item.id)
+        alimentosData.forEach((item, index) => {
+            const alimento = this.add.image(posicionesX[index], 530, item.id)
                 .setScale(0.15)
                 .setDepth(10)
                 .setInteractive({ draggable: true });
