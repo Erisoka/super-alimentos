@@ -63,20 +63,20 @@ export default class Level2_Lonchera extends Phaser.Scene {
         this.add.image(730, 480, 'nutri').setScale(0.2).setDepth(10);
 
         // Configuramos los alimentos y si son saludables (true/false)
-        // Rediseño de posiciones X para máximo tamaño (escala 0.3) y balance (97px de espacio)
+        // Ajuste final de posiciones X para escala 0.25 (Balance perfecto entre tamaño y elegancia)
         const alimentosData = [
-            { id: 'manzana', x: 110, saludable: true },
-            { id: 'gaseosa', x: 207, saludable: false },
-            { id: 'pan',     x: 304, saludable: true },
-            { id: 'agua',    x: 401, saludable: true },
-            { id: 'papas',   x: 498, saludable: false },
-            { id: 'yogur',   x: 595, saludable: true },
-            { id: 'dulces',  x: 692, saludable: false }
+            { id: 'manzana', x: 140, saludable: true },
+            { id: 'gaseosa', x: 225, saludable: false },
+            { id: 'pan',     x: 310, saludable: true },
+            { id: 'agua',    x: 395, saludable: true },
+            { id: 'papas',   x: 480, saludable: false },
+            { id: 'yogur',   x: 565, saludable: true },
+            { id: 'dulces',  x: 650, saludable: false }
         ];
 
         alimentosData.forEach(item => {
             const alimento = this.add.image(item.x, 530, item.id)
-                .setScale(0.3)
+                .setScale(0.25)
                 .setDepth(10)
                 .setInteractive({ useHandCursor: true });
 
@@ -88,12 +88,12 @@ export default class Level2_Lonchera extends Phaser.Scene {
                     this.scoreText.setText(this.score);
                     alimento.disableInteractive();
 
-                    // Vuela hacia la lonchera y desaparece (ajuste de escala final suave para 0.3)
+                    // Vuela hacia la lonchera y desaparece (ajuste de escala final suave para 0.25)
                     this.tweens.add({
                         targets: alimento,
                         x: 400,
                         y: 305,
-                        scale: 0.12,
+                        scale: 0.1,
                         alpha: 0,
                         duration: 600,
                         ease: 'Power2',

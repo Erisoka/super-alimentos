@@ -64,20 +64,20 @@ export default class Level1_Semaforo extends Phaser.Scene {
             .setStrokeStyle(4, 0xf5deb3)
             .setDepth(5);
 
-        // Creación y configuración de alimentos
-        const manzana = this.add.image(200, 530, 'manzana').setScale(0.15).setDepth(10).setInteractive({ draggable: true });
+        // Creación y configuración de alimentos (Escala 0.25 HD sincronizada con Nivel 2)
+        const manzana = this.add.image(200, 530, 'manzana').setScale(0.25).setDepth(10).setInteractive({ draggable: true });
         manzana.colorCorrecto = 'verde';
 
-        const huevo = this.add.image(300, 530, 'huevo').setScale(0.15).setDepth(10).setInteractive({ draggable: true });
+        const huevo = this.add.image(300, 530, 'huevo').setScale(0.25).setDepth(10).setInteractive({ draggable: true });
         huevo.colorCorrecto = 'amarillo';
 
-        const pizza = this.add.image(400, 530, 'pizza').setScale(0.1).setDepth(10).setInteractive({ draggable: true });
+        const pizza = this.add.image(400, 530, 'pizza').setScale(0.25).setDepth(10).setInteractive({ draggable: true });
         pizza.colorCorrecto = 'rojo';
 
-        const agua = this.add.image(500, 530, 'agua').setScale(0.15).setDepth(10).setInteractive({ draggable: true });
+        const agua = this.add.image(500, 530, 'agua').setScale(0.25).setDepth(10).setInteractive({ draggable: true });
         agua.colorCorrecto = 'verde';
 
-        const dulces = this.add.image(600, 530, 'dulces').setScale(0.15).setDepth(10).setInteractive({ draggable: true });
+        const dulces = this.add.image(600, 530, 'dulces').setScale(0.25).setDepth(10).setInteractive({ draggable: true });
         dulces.colorCorrecto = 'rojo';
 
         // Personaje Nutri guardado en this para poder animarlo luego (Depth 10)
