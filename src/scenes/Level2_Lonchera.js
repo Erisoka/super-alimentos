@@ -210,7 +210,7 @@ export default class Level2_Lonchera extends Phaser.Scene {
 
         btnSiguiente.on('pointerdown', () => {
             this.sound.play('click');
-            this.scene.start('Level3_Grupos');
+            this.scene.start('IntroLevel3');
         });
     }
 }

@@ -1,6 +1,6 @@
-export default class IntroLevel2 extends Phaser.Scene {
+export default class IntroLevel3 extends Phaser.Scene {
     constructor() {
-        super('IntroLevel2');
+        super('IntroLevel3');
     }
 
     create() {
@@ -8,7 +8,7 @@ export default class IntroLevel2 extends Phaser.Scene {
         this.add.image(400, 300, 'bg_menu').setDisplaySize(800, 600);
         this.add.rectangle(400, 300, 800, 600, 0x8bc34a).setAlpha(0.95);
 
-        this.add.text(400, 60, 'Nivel 2: La Lonchera Saludable', {
+        this.add.text(400, 60, 'Nivel 3: Los grupos de alimentos', {
             fontFamily: 'Arial',
             fontSize: '32px',
             color: '#000000',
@@ -16,7 +16,7 @@ export default class IntroLevel2 extends Phaser.Scene {
         }).setOrigin(0.5);
 
         // 2. Texto Explicativo (Izquierda)
-        const explicacion = 'Introducción del nivel:\nNutri dice: "Cuando vamos a la escuela necesitamos energía para aprender, jugar y crecer. Por eso nuestra lonchera debe tener alimentos saludables."\n\nObjetivo:\nConstruir una lonchera equilibrada.';
+        const explicacion = 'Introducción del nivel:\nNutri explica: "Los alimentos se dividen en grupos. Cada grupo ayuda a nuestro cuerpo de diferentes maneras."\n\nObjetivo:\nClasificar alimentos por grupos.';
 
         this.add.text(50, 150, explicacion, {
             fontFamily: 'Arial',
@@ -27,7 +27,11 @@ export default class IntroLevel2 extends Phaser.Scene {
         });
 
         // 3. Imágenes Ilustrativas (Derecha)
-        this.add.image(650, 300, 'lonchera_llena').setScale(0.55);
+        // Al colocar los alimentos antes que la canasta, aparecerán "dentro" si se posicionan detrás
+        this.add.image(620, 260, 'banano').setScale(0.12).setAngle(-15);
+        this.add.image(680, 260, 'brocoli').setScale(0.12).setAngle(15);
+        this.add.image(650, 300, 'canasta').setScale(0.4);
+        
         this.add.image(500, 400, 'nutri').setScale(0.2);
 
         // 4. Botón para Iniciar el Nivel
@@ -41,7 +45,7 @@ export default class IntroLevel2 extends Phaser.Scene {
 
         btnStart.on('pointerdown', () => {
             this.sound.play('click');
-            this.scene.start('Level2_Lonchera');
+            this.scene.start('Level3_Grupos');
         });
 
         // Efectos del botón
