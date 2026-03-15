@@ -79,8 +79,9 @@ export default class Level3_Grupos extends Phaser.Scene {
             .setStrokeStyle(4, 0xf5deb3)
             .setDepth(5);
 
-        // Posiciones X disponibles en la bandeja, mezcladas aleatoriamente
-        const posicionesX = Phaser.Utils.Array.Shuffle([250, 350, 450, 550]);
+        // Posiciones X disponibles en la bandeja, mezcladas aleatoriamente (más separadas)
+        // Inicio en 200, separación de 130px: 200, 330, 460, 590
+        const posicionesX = Phaser.Utils.Array.Shuffle([200, 330, 460, 590]);
 
         // Alimentos
         const alimentosData = [
